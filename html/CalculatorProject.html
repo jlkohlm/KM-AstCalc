@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Astronomical Calculator</title>
+        <meta name="generator" content="Bluefish 2.2.12" />
+        <meta name="created" content="2022-08-18T17:58:37.628367838" />
+        <meta name="changed" content="2022-08-19T18:47:37.841462436" />
+        <style>
+            body {
+
+            }
+            td {
+                text-align: center;
+                vertical-align: middle;
+            }
+            #constTD {
+                text-align: center;
+                vertical-align: middle;
+                background-color: transparent;
+            }
+            .icon {
+                width: 17px;
+                height: 12px;
+            }
+            .footnote {
+                vertical-align: top;
+                text-align: left;
+            }
+            .foot {
+                text-align: left;
+                font-size: 10pt;
+            }
+            .Calculator {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .units {
+                border: 0px solid white;
+                display: inline-block;
+                width: 150px;
+                font-size: 12pt;
+            }
+
+            input[type="text"] {
+                text-align: right;
+                font-size: 14pt;
+            }
+
+            .astpad {
+                text-align: center;
+                vertical-align: middle;
+                border-top: 1px solid #000000;
+            }
+
+            .numpad {
+                width: 0%;
+                border: 0px solid;
+                color: #000000;
+                padding: 0.0in;
+            }
+
+            .funpad {
+                width: 25%;
+            }
+
+            .planets {
+                font-size: 12pt;
+                font-weight: bold;
+            }
+            .ctl {
+                font-size: 12pt;
+            }
+            .triangles {
+                font-size: 12pt;
+                width: 40px;
+            }
+            .num,
+            .ari,
+            .exp {
+                width: 50px;
+                font-size: 16pt;
+            }
+            .shftbut {
+                background-color: #f5c1be;
+                font-size: 14pt;
+            }
+            .elements,
+            .asteroids,
+            .comets {
+                font-size: 16pt;
+                font-style: italic;
+            }
+
+            tr {
+                vertical-align: middle;
+            }
+            .append {
+                font-size: 10pt;
+            }
+
+            .shftbut:hover {
+                font-size: 14pt;
+                background-color: #c2f5be;
+            }
+            #unitsTab {
+                background-color: transparent;
+            }
+            #coals {
+                width: 80px;
+            }
+            .ctl {
+                width: 55px;
+            }
+            .fun,.trig {
+                width: 80px;
+                font-size: 14pt;
+            }
+            .upload {
+                width: 80px;
+                font-size: 12pt;
+            }
+            .hunit,.sclcls, funit {
+                font-size: 11pt;
+            }
+            .unit {
+                background-color: '';
+            }
+        </style>
+        <script src="../JavaScript/jquery-3.6.0.js">
+        </script>
+    </head>
+
+    <body lang="en-US" link="#000080" vlink="#800000" dir="ltr">
+        <form id="calc">
+            <table class="Calculator" width="70%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td colspan="2" style="text-align: center; font-size: 20pt; font-weight: bold; padding-bottom: 20px">
+                        <img src="KM.png" alt="KM-" width="30"> - Astronomical Calculator - <img src="KM.png" alt="-KM" width="30">
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td width="50%"
+                        style="border-top: 1px solid #000000; border-left: 1px solid #000000; border-bottom: 1px solid #000000; padding: 0px">
+                        <table width="100%" cellpadding="2" cellspacing="0" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000">
+                            <tr>
+                                <th
+                                    style="border-right: 1px solid #000000; border-bottom: 1px solid #000000; padding: 0.00in">
+                                    Pile
+                                </th>
+                                <th
+                                    style="border-right: 1px solid #000000;border-bottom: 1px solid #000000; padding: 0.00in">
+                                    Values
+                                </th>
+                                <th style="border-bottom: 1px solid #000000; padding: 0.00in">
+                                    Units
+                                </th>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid #000000; padding: 0.0in">
+                                    <font face="Vemana2000">
+                                    <font size="5" style="font-size: 12pt"><b>T</b></font>
+                                    </font>
+                                </td>
+                                <td style="border-right: 1px solid #000000; padding: 0.0in">
+                                    <input type="text" inputmode="numeric" pattern="\d*" id="T" value="0" readonly="">
+                                </td>
+                                <td >
+                                    <div class="units" id="untT" contenteditable="true"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td 
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                                    <font face="Vemana2000">
+                                    <font size="5" style="font-size: 12pt"><b>Z</b></font>
+                                    </font>
+                                </td>
+                                <td 
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                                    <input type="text" inputmode="numeric" pattern="\d*" id="Z" value="0" readonly="">
+                                </td>
+                                <td style="border-top: 1px solid #000000; padding: 0.0in">
+                                    <div class="units" id="untZ" contenteditable="true"></div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td 
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                                    <font face="Vemana2000">
+                                    <font size="5" style="font-size: 12pt"><b>Y</b></font>
+                                    </font>
+                                </td>
+                                <td 
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                                    <input type="text" inputmode="numeric" pattern="\d*" id="Y" value="0" readonly="">
+                                </td>
+                                <td style="border-top: 1px solid #000000; padding: 0.0in">
+                                    <div class="units" id="untY" contenteditable="true"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                                    <font face="Vemana2000">
+                                    <font size="5" style="font-size: 12pt"><b>X</b></font>
+                                    </font>
+                                </td>
+                                <td 
+                                    style="border-top: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                                    <input type="text" inputmode="numeric" pattern="\d*" id="X" value="0" readonly="">
+                                </td>
+                                <td style="border-top: 1px solid #000000; padding: 0.0in">
+                                    <div class="units" id="untX" contenteditable="true" title="Click here to load selected units"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="50%" style="border: 1px solid #000000; border: 1px solid #000000; padding-top: 0px; padding-bottom: 0px; padding-right: 10px">
+                        <table width="100%" valign="top" cellpadding="2" cellspacing="0">
+                            <tr valign="top">
+                                <td colspan="5">
+                                    <table width="100%" valign="top" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="20%" class='funit'>
+                                                <label for="fxd">Fix</label><br>
+                                                <input type="radio" class="nott" id="fxd" value="0" name="nfmt">
+                                                <!-- Fixed number -->
+                                            </td>
+                                            <td width="16%" class='funit'>
+                                                <label for="sci">Sci</label><br>
+                                                <input type="radio" class="nott" id="sci" value="1" name="nfmt"><!-- Scientific -->
+                                            </td>
+                                            <td width="16%" class='funit'>
+                                                <label for="eng">Prc</label><br>
+                                                <input type="radio" class="nott" id="eng" value="2" name="nfmt" checked><!-- Engineer -->
+                                            </td>
+                                            <td width="20%" class='funit'>
+                                                <label for="dgts">N Digits</label><br>
+                                                <select name="ndgts" id="dgts">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5" selected="selected">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </td>
+                                            <td id="scaleTab" width="20%" class='sclcls'>
+                                                <label for="scale">Scale</label><br>
+                                                <select name="scale" id="scale">
+                                                    <option value="0" selected="selected">none</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <br><input type="button" class="ctl" id="coals" value="Coalesce" title="Coalesce all units to the basic ones"><!-- Coalesce button -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="5">
+                                    <table id="unitsTab" width="100%">
+                                        <tr>
+                                            <td class='hunit'>
+                                                <label for="Radiation">Radiation</label><br>
+                                                <select class="unit" name="radiation" id="Radiation" title="Luminous and radiation">
+                                                    <option value="null" selected>none</option>
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="Thermo">Thermo</label><br>
+                                                <select class="unit" name="thermo" id="Thermo" title="Thermodynamics">
+                                                    <option value="null" selected>none</option>
+
+                                                </select>
+                                            </td>
+                                            <td class='nunit'>
+                                                <label for="Momentum">Momentum</label><br>
+                                                <select class="unit" name="momentum" id="Momentum" title="<Motion">
+                                                    <option value="null" selected>none</option>
+
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="ElectroMag">ElectroMag</label><br>
+                                                <select class="unit" name="electromag" id="ElectroMag" title="Electromagnetism">
+                                                    <option value="null" selected>none</option>
+
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="clean">&nbsp;<br></label>
+                                                <input type="button" class="ctl" id="clean" value="Clean" title="Clean up Unit registers">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='hunit'>
+                                                <label for="Mass">Mass</label><br>
+                                                <select class="unit" name="mass" id="Mass" Title="Mass">
+                                                    <option value="null" selected>none</option>
+
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="Space">Space</label><br>
+                                                <select class="unit" name="space" id="Space" title="Length and space">
+                                                    <option value="null" selected>none</option>
+
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="Time">Time</label><br>
+                                                <select class="unit" name="time" id="Time" title="Time">
+                                                    <option value="null" selected>none</option>
+
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="Angle">Angle</label><br>
+                                                <select class="unit" name="angle" id="Angle" title="Linear angle">
+                                                    <option value="null" selected>none</option>
+                                                </select>
+                                            </td>
+                                            <td class='hunit'>
+                                                <label for="inv">&nbsp;<br></label>
+                                                    <input type="button" class="shftbut" id="inv" value="INV" title="Inverse function; '\'">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; padding: 0.0in">
+                        <p>
+                        <table width="100%">
+                            <tr>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="cce" value="C/CE" title="Clean up numeric registers; 'Delete'"><!-- Clear X -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="eex" value="E"><!-- Exponent -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="chs" value="CHS" title="Change sign of X; '_'"><!-- Change sign -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="invx" value="1/x" title="Invert X; '<'"><!-- Invert X -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="enter" value="Enter" title="Set X-register to given value; 'Enter'"><!-- Enter -->
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt7" value="7"><!-- Button 7 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt8" value="8"><!-- Button 8 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt9" value="9"><!-- Button 9 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ari" id="plus" value="+"><!-- Plus button -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="rlldn" value="RDwn" title="Roll down the pile; 'ArrowDown'"><!-- Roll down -->
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt4" value="4"><!-- Button 4 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt5" value="5"><!-- Button 5 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt6" value="6"><!-- Button 6 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ari" id="minus" value="-"><!-- Minus button -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="xy" value="x-y" title="Swap X and Y registers; 'ArrowLeft'"><!-- Swap x y -->
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt1" value="1"><!-- Button 1 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt2" value="2"><!-- Button 2 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="bt3" value="3"><!-- Button 3 -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ari" id="mult" value="*"><!-- Mult button -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="sto" value="Sto" title="Store in memory 0 - 9"><!-- Store button -->
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="dot" value="."><!-- Dot button -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="num" id="zero" value="0"><!-- Zero >Button -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="rbt" value="<-"><!-- Correct  -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ari" id="div" value="/"><!-- Div button -->
+                                    </p>
+                                </td>
+                                <td class="numpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="rcl" value="Rcl" title="Recall from memory 0 - 9"><!-- Recall button -->
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td 
+                        style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in">
+                        <table width="100%">
+                            <tr valign="top">
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="abs" value="ABS" title="Absolute Value; 'm'"><!-- Absolute value -->
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="perc" value="%" title="Y/X relation x100; '%'"><!-- Percent button -->
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="exp" value="EXP" title="Eponential; 'x'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="log10" value="10^x" title="10-Exponential; 'X'"><!-- Euler -->
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="int" value="INT" title="Integer part of X; '|'">
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="funpad">
+                                    <input type="button" class="ctl" id="toPolar" value="->P" title="y-x to polar coords; 'p'"><!-- To Polar -->
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="quadr" value="Quad" title="Reduce angle to 2*PI quadrant; 'Q'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="rnd" value="RND" title="Random number 0..1; 'n'"><!-- Random -->
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="sqr" value="SQR" title="Square of X; 'q'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="y2x" value="y^x" title="Y to X; '^'">
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="funpad">
+                                    <input type="button" id="dms" class="ctl" value="D:M:S" title="To format DD:MM:SS; ';'"><!-- To format DD:MM:SS -->
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="pi" value="&pi;" title="Number PI=3.1415...; 'P'"><!-- PI -->
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="trig" id="sin" value="SIN" title="Sine of X; 's'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="trig" id="cos" value="COS" title="Cosine of X; 'c'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="trig" id="tan" value="TAN" title="Tangent of X; 't'">
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="fact" value="x!" title="Factorial of X; !"><!-- Factorial -->
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="snh" value="SNH" title="Hyperbolic sine of X; 'S'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="csh" value="CSH" title="Hyperbolic cosine of X; 'C'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="tnh" value="TNH" title="Hyperbolic tangent of X; 'T'">
+                                    </p>
+                                </td>
+                                <td class="funpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="jul" value="JulD" title="From Greg. date: day(X) month(Y) year(Z-yyyy) get Julian date; 'j'"><!-- Julian -->
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td class="astpad">
+                                    <p align="center">
+                                        <input type="button" class="ctl" id="kepler" value="Kepler" title="Solve Kepler equation: e->Y,M->X; 'k'"><!-- Kepler -->
+                                    </p>
+                                </td>
+                                <td class="astpad">
+                                    <p align="center">
+                                        <input type="button" class="triangles" id="EqH" value="EqH" title="Equatorial coords to Horizontal, phi(Z)-dec(Y)-H(X), returns phi(Z)-z(Y)-A(X); '!'"><!-- ABC -->
+                                    </p>
+                                </td>
+                                <td class="astpad">
+                                    <p align="center">
+                                        <input type="button" class="triangles" id="EEc" value="EEc" title="Equatorial coords to Ecliptic, dec(Y)-ra(X), returns b(Y), lambda(X); '@'"><!-- ABc -->
+                                    </p>
+                                </td>
+                                <td class="astpad">
+                                    <p align="center">
+                                        <input type="button" class="triangles" id="EGa" value="EGa" title="Equatorial coords to galactic, dec(Y)-ra(X), returns b(Y), l(X); '#'"><!-- AaB -->
+                                    </p>
+                                </td>
+                                <td class="astpad">
+                                    <p align="center">
+                                        <input type="button" class="fun" id="st0" value="GST0" title="Greenwich Sidereal time (H) at 0UT: X->Julian Day; 'w'"><!-- Sidereal time at 0UT -->
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr valign="top">
+                <tr>
+                    <td class="constTD" style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; padding: 5px; text-align: left;width: 50%">
+                        <label for="physical">Physical Constants</label>
+                        <select name="physical" id="physical" title="Physical constants">
+                            <option value="null" selected>none</option>
+                        </select>
+                        &nbsp;<input type="button" class="upload" id="upldPhys" value="Upload"
+                                     title="Upload physical constant to register X">
+                    </td>
+                    <td class="constTD"
+                        style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000; padding: 5px; text-align: left;width: 50%">
+                        <label for="astron">Astronomical Constants</label>
+                        <select name="astron" id="astron" title="Astronomical constants">
+                            <option value="null" selected>none</option>
+                        </select>
+                        &nbsp;<input type="button" class="upload" id="upldAstr" value="Upload"
+                                     title="Upload astronomical constant to register X">
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; padding: 0.0in; text-align: left">
+                        <table width="100%"  cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <select name="planets" id="planet">
+                                        <option value="null" selected="selected">Planet</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="planets" id="pmass" contenteditable="false" title="Mass(10^24 kg)">M</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="diameter" contenteditable="false" title="Diameter(km)">&Phi;</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="density" contenteditable="false" title="Density(kg/m^3)">&rho;</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="gravity" contenteditable="false" title="Gravity(m/s^2)">g</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="escape" contenteditable="false" title="Escape velocity(km/s)">v<sub>E</sub></div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="rotation" contenteditable="false" title="Rotation period(hr)">R</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="day" contenteditable="false" title="Length of the day(hr)">D</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="fromsun" contenteditable="false" title="Distance from the Sun(10^6 km)">&Delta;<sub>S</sub></div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="perihelion" contenteditable="false" title="Perihelion(10^6 km)"><i>q</i></div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="aphelion" contenteditable="false" title="Aphelion(10^6 km)"><i>Q</i></div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="orbital" contenteditable="false" title="Orbital Period(dy)"><i>T</i><sub>o</sub></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Elements<a href="#j2000"><sup>*</sup></a>
+                                </td>
+                                <td>
+                                    <div class="elements" id="osculating" title="Osculating date (Julian Day)" contenteditable="false">J<sub>0</sub></div>
+                                </td>
+                                <td>
+                                    <div class="elements" id="semimajor" title="Semimajor axis (AU)" contenteditable="false">a</div>
+                                </td>
+                                <td>
+                                    <div class="elements" id="eccentricity" title="Orbital Eccentricity" contenteditable="false">e</div>
+                                </td>
+                                <td>
+                                    <div class="elements" id="inclination" title="Orbital Inclination (deg)" contenteditable="false">i</div>
+                                </td>
+                                <td>
+                                    <div class="elements" id="ascending" title="Longitude of ascending node (deg)" contenteditable="false">&Omega;</div>
+                                </td>
+                                <td>
+                                    <div class="elements" id="perilong" title="Longitude of the perihelion (deg)" contenteditable="false">&varpi;</div>
+                                </td>
+                                <td>
+                                    <div class="elements" id="longmean" title="Mean longitude (deg)" contenteditable="false">L</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="obliquity" title="Obliquity to Orbit (deg)" contenteditable="false">&varepsilon;</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="plantemp" title="Mean Temperature (C)" contenteditable="false">&Theta;</div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="moons" title="Number of Moons" contenteditable="false"><i>N</i><sub>M</sub></div>
+                                </td>
+                                <td>
+                                    <div class="planets" id="mag" title="Visual Absolute Magnitude" contenteditable="false"><i>H</i></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000; padding: 0.0in; text-align: left">
+                        <table width="100%"  cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <select name="asteroids" id="asteroid">
+                                        <option value="null" selected="selected">Asteroid</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="astepoch" title="Epoch of the elements represented as the Modified Julian Date (MJD)">E<sub>0</sub></div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="asta" title="Semimajor axis (AU)">a</div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="aste" title="Eccentricity of the orbit">e</div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="asti" title="Inclination of the orbit with respect to the J2000 ecliptic plane (deg)">i</div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="astomega" title="Argument of perihelion (deg)">&omega;</div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="astOmega" title="Longitude of ascending node (deg)">&Omega;</div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="astM0" title="Mean anomaly (deg)">M<sub>0</sub></div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="astH" title="Absolute magnitude">H</div>
+                                </td>
+                                <td>
+                                    <div class="asteroids" id="astG" title="Magnitude slope parameter">G</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="comets" id="comet">
+                                        <option value="null" selected="selected">Comet</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="comets" id="comepoch" title="Epoch of the elements represented as the Modified Julian Date (MJD)">E<sub>0</sub></div>
+                                </td>
+                                <td>
+                                    <div class="comets" id="comq" title="Perihelion (AU)">q</div>
+                                </td>
+                                <td>
+                                    <div class="comets" id="come" title="Eccentricity of the orbit">e</div>
+                                </td>
+                                <td>
+                                    <div class="comets" id="comi" title="Inclination of the orbit with respect to the J2000 ecliptic plane (deg)">i</div>
+                                </td>
+                                <td>
+                                    <div class="comets" id="comomega" title="Argument of perihelion (deg)">&omega;</div>
+                                </td>
+                                <td>
+                                    <div class="comets" id="comOmega" title="Longitude of ascending node (deg)">&Omega;</div>
+                                </td>
+                                <td>
+                                    <div class="comets" id="comTp" title="Time of Perihelion passage (JD)">T<sub>p</sub></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="foot">
+                        <sup>*</sup>Equinox: J2000.0
+                    </td>
+                    <td></td>
+                </tr><!--  -->
+                <tr>
+                    <td class="footnote">
+                        <p class="append">
+                            <i><b>Data references:</b></i><br>
+                            <a href="https://en.wikipedia.org/wiki/International_System_of_Units" target="_blank">Internation System of Units</a>
+                            <br><a href="https://en.wikipedia.org/wiki/List_of_physical_constants" target="_blank">Physical Constants</a>
+                            <br><a href="https://link.springer.com/content/pdf/bbm:978-3-540-76949-1/1.pdf" target="_blank">Physical & Astronomical Constants</a>
+                            <br><a href="https://en.wikipedia.org/wiki/Astronomical_constant" target="_blank">Astronomical Constants</a>
+                            <br><a href="https://nssdc.gsfc.nasa.gov/planetary/factsheet/" target="_blank">Planetary data & elements</a>
+                            <br><a href="https://ssd.jpl.nasa.gov/sb/elem_tables.html" target="_blank">Small-Body Element Tables</a>
+                        </p>
+
+                    </td>
+                    <td class='footnote'>
+                        <p class="append">
+                            <i><b>Explanations:</b></i><br>
+                            <a href="docs/KM-AstCalc.pdf" target="_blank">User's Guide <img src="us.png" alt="US" class="icon"></a>
+                            <br><a href="docs/KM-AstCalc-PT.pdf" target="_blank">Manual <img src="br.png" alt="BR" class="icon"></a>
+                            <br><a href='docs/Shortcuts.pdf' target="_blank">Shortcuts</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <script src="../JavaScript/SciCalc.js"></script>
+    </body>
+</html>
